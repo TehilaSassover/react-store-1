@@ -5,15 +5,26 @@ function StoreItems() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const items = getProducts();
-        setProducts(items);
+        async function fetchData() {
+            const items = await getProducts();
+            setProducts(items);
+        }
+        fetchData();
     }, []);
+
+
 
     console.log(products);
     return (
         <div>
             <h1>Store Items</h1>
-        </div >
+            {products.map((product) => (
+                <div key={product.id}>
+                    <li>{product.title}</li>
+                </div>
+            ))
+            }
+        </div>
     );
 }
 
