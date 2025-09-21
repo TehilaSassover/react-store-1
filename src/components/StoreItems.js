@@ -5,11 +5,13 @@ function StoreItems() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+
         async function fetchData() {
             const items = await getProducts();
             setProducts(items);
         }
         fetchData();
+
     }, []);
 
 
